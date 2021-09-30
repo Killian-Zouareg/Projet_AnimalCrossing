@@ -2,6 +2,7 @@ package com.foreach.TpForEach.entityDO;
 
 
 import com.foreach.TpForEach.entityDTO.BatimentDTO;
+import com.foreach.TpForEach.entityDTO.IleDTO;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,14 +21,20 @@ public class Ile {
     @Column
     String localisation;
 
-    @OneToMany
-    @JoinColumn (name = "id")
-    List<Batiment> batiment;
+    @ManyToOne
+    @JoinColumn(name = "id_archipel")
+    Archipel archipel;
 
-    @OneToMany
-    @JoinColumn (name = "id")
-    List <Espaces> espaces;
 
+    public Ile(IleDTO ileDTO) {
+        this.id = ileDTO.getId();
+        this.nom = ileDTO.getNom();
+        this.localisation = ileDTO.getLocalisation();
+        this.archipel = ileDTO.getArchipelDTO();
+    }
+
+    public Ile() {
+    }
 
     public Integer getId() {
         return id;
@@ -53,19 +60,12 @@ public class Ile {
         this.localisation = localisation;
     }
 
-    public List<Batiment> getBatiment() {
-        return batiment;
+
+    public Archipel getArchipel() {
+        return archipel;
     }
 
-    public void setBatiment(List<Batiment> batiment) {
-        this.batiment = batiment;
-    }
-
-    public List<Espaces> getEspaces() {
-        return espaces;
-    }
-
-    public void setEspaces(List<Espaces> espaces) {
-        this.espaces = espaces;
+    public void setArchipel(Archipel archipel) {
+        this.archipel = archipel;
     }
 }

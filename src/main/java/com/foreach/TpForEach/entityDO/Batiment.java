@@ -20,6 +20,9 @@ public class Batiment {
     @Column
     String typedebatiment;
 
+    @ManyToOne
+    @JoinColumn (name = "id_ile")
+    Ile ile;
 
     public Integer getId() {
         return id;
@@ -51,5 +54,13 @@ public class Batiment {
 
     public void setTypedebatiment(String typedebatiment) {
         this.typedebatiment = typedebatiment;
+    }
+
+    public Ile getIle() {
+        return ile;
+    }
+
+    public void setIle(Ile ile) {
+        this.ile = ile;
     }
 }

@@ -1,7 +1,9 @@
 package com.foreach.TpForEach.entityDO;
 
+import com.foreach.TpForEach.entityDTO.EspacesDTO;
 import com.foreach.TpForEach.entityDTO.ForetDTO;
 import com.foreach.TpForEach.entityDTO.PlageDTO;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,13 +18,22 @@ public class Espaces {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_foret")
-    Foret foret;
+    @Column
+    String nom;
 
     @ManyToOne
-    @JoinColumn(name = "id_plage")
-    Plage plage;
+    @JoinColumn (name = "id_ile")
+    Ile ile;
+
+
+    public Espaces(EspacesDTO espacesDTO) {
+        this.id = espacesDTO.getId();
+        this.nom = espacesDTO.getNom();
+        this.ile = espacesDTO.getIleDTO();
+    }
+
+    public Espaces() {
+    }
 
     public Integer getId() {
         return id;
@@ -32,25 +43,19 @@ public class Espaces {
         this.id = id;
     }
 
-    public Foret getForetDO() {
-        return foret;
+    public Ile getIle() {
+        return ile;
     }
 
-    public Foret getForet() {
-        return foret;
+    public void setIle(Ile ile) {
+        this.ile = ile;
     }
 
-    public void setForet(Foret foret) {
-        this.foret = foret;
+    public String getNom() {
+        return nom;
     }
 
-    public Plage getPlage() {
-        return plage;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
-
-    public void setPlage(Plage plage) {
-        this.plage = plage;
-    }
-
-
 }

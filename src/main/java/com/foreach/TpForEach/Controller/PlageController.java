@@ -28,4 +28,9 @@ public class PlageController {
     public List<PlageDTO> recupererToutesLesPLages(){
         return plageService.recupererToutesLesPlages();
     }
+
+    @PutMapping("/{id}")
+    public void modifierPlage(@PathVariable("id") Integer id , @RequestBody PlageDTO plageDTO){
+        plageService.modifierPlage(id,plageDTO);
+    }
 }

@@ -1,6 +1,7 @@
 package com.foreach.TpForEach.entityDTO;
 
 import com.foreach.TpForEach.entityDO.Espaces;
+import com.foreach.TpForEach.entityDO.Ile;
 import com.foreach.TpForEach.entityDO.Plage;
 
 public class EspacesDTO {
@@ -8,21 +9,27 @@ public class EspacesDTO {
 
     Integer id;
 
-    ForetDTO foretDTO;
+    Ile ileDTO;
 
-    PlageDTO plageDTO;
+    String nom;
 
+    public String getNom() {
+        return nom;
+    }
 
-    public EspacesDTO(Integer id, ForetDTO foretDTO, PlageDTO plageDTO) {
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public EspacesDTO(Integer id,String nom, Ile ileDTO) {
         this.id = id;
-        this.foretDTO = foretDTO;
-        this.plageDTO = plageDTO;
+        this.nom = nom;
+        this.ileDTO = ileDTO;
     }
 
     public EspacesDTO(Espaces espaces) {
         this.id = espaces.getId();
-        this.foretDTO =new ForetDTO(espaces.getForet());
-        this.plageDTO =new PlageDTO(espaces.getPlage());
+        this.ileDTO = espaces.getIle();
     }
 
     public Integer getId() {
@@ -33,19 +40,11 @@ public class EspacesDTO {
         this.id = id;
     }
 
-    public ForetDTO getForetDTO() {
-        return foretDTO;
+    public Ile getIleDTO() {
+        return ileDTO;
     }
 
-    public void setForetDTO(ForetDTO foretDTO) {
-        this.foretDTO = foretDTO;
-    }
-
-    public PlageDTO getPlageDTO() {
-        return plageDTO;
-    }
-
-    public void setPlageDTO(Plage plage) {
-        this.plageDTO = plageDTO;
+    public void setIleDTO(Ile ileDTO) {
+        this.ileDTO = ileDTO;
     }
 }

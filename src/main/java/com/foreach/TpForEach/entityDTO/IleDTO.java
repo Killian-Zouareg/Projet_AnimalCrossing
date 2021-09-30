@@ -1,5 +1,6 @@
 package com.foreach.TpForEach.entityDTO;
 
+import com.foreach.TpForEach.entityDO.Archipel;
 import com.foreach.TpForEach.entityDO.Batiment;
 import com.foreach.TpForEach.entityDO.Espaces;
 import com.foreach.TpForEach.entityDO.Ile;
@@ -16,25 +17,21 @@ public class IleDTO {
 
     String localisation;
 
-    List<Batiment> batimentDTO;
-
-    List<Espaces> espacesDTO;
+    Archipel archipelDTO;
 
 
-    public IleDTO(Integer id, String nom, String localisation, List<Batiment> batimentDTO, List<Espaces> espacesDTO) {
+    public IleDTO(Integer id, String nom, String localisation, Archipel archipelDTO) {
         this.id = id;
         this.nom = nom;
         this.localisation = localisation;
-        this.batimentDTO = batimentDTO;
-        this.espacesDTO = espacesDTO;
+        this.archipelDTO = archipelDTO;
     }
 
     public IleDTO(Ile ile) {
         this.id = ile.getId();
         this.nom = ile.getNom();
         this.localisation = ile.getLocalisation();
-        this.batimentDTO = ile.getBatiment();
-        this.espacesDTO = ile.getEspaces();
+        this.archipelDTO = ile.getArchipel();
     }
 
     public Integer getId() {
@@ -61,19 +58,11 @@ public class IleDTO {
         this.localisation = localisation;
     }
 
-    public List<Batiment> getBatimentDTO() {
-        return batimentDTO;
+    public Archipel getArchipelDTO() {
+        return archipelDTO;
     }
 
-    public void setBatimentDTO(List<Batiment> batimentDTO) {
-        this.batimentDTO = batimentDTO;
-    }
-
-    public List<Espaces> getEspacesDTO() {
-        return espacesDTO;
-    }
-
-    public void setEspacesDTO(List<Espaces> espacesDTO) {
-        this.espacesDTO = espacesDTO;
+    public void setArchipelDTO(Archipel archipelDTO) {
+        this.archipelDTO = archipelDTO;
     }
 }

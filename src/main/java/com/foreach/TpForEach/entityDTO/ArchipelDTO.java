@@ -2,6 +2,7 @@ package com.foreach.TpForEach.entityDTO;
 
 import com.foreach.TpForEach.entityDO.Archipel;
 import com.foreach.TpForEach.entityDO.Ile;
+import com.foreach.TpForEach.entityDO.Joueur;
 
 import java.util.List;
 
@@ -14,37 +15,13 @@ public class ArchipelDTO {
 
     String localisation;
 
-    List<Ile> iles;
+    Joueur joueur;
 
-    public ArchipelDTO() {
-    }
-
-    public ArchipelDTO(Integer id, String nom, String localisation, List<Ile> iles) {
+    public ArchipelDTO(Integer id, String nom, String localisation, Joueur joueur) {
         this.id = id;
         this.nom = nom;
         this.localisation = localisation;
-        this.iles = iles;
-    }
-
-public ArchipelDTO(Archipel archipel) {
-        this.id = archipel.getId();
-        this.nom = archipel.getNom();
-        this.localisation = archipel.getLocalisation();
-        this.iles = archipel.getIleDTOS();
-    }
-
-    public List<Ile> getIles() {
-        return iles;
-    }
-
-    public void setIles(List<Ile> iles) {
-        this.iles = iles;
-    }
-
-    public ArchipelDTO(Integer id, String nom, String localisation) {
-        this.id = id;
-        this.nom = nom;
-        this.localisation = localisation;
+        this.joueur = joueur;
     }
 
     public Integer getId() {
@@ -70,4 +47,20 @@ public ArchipelDTO(Archipel archipel) {
     public void setLocalisation(String localisation) {
         this.localisation = localisation;
     }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
+
+    public ArchipelDTO(Archipel archipel) {
+        this.id = archipel.getId();
+        this.nom = archipel.getNom();
+        this.localisation = archipel.getLocalisation();
+        this.joueur = archipel.getJoueur();
+    }
+
 }

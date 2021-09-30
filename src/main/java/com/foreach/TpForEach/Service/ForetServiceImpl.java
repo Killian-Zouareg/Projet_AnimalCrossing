@@ -1,6 +1,8 @@
 package com.foreach.TpForEach.Service;
 
+import com.foreach.TpForEach.Repository.EspacesJPARepository;
 import com.foreach.TpForEach.Repository.ForetJPARepository;
+import com.foreach.TpForEach.entityDO.Espaces;
 import com.foreach.TpForEach.entityDO.Foret;
 import com.foreach.TpForEach.entityDTO.ForetDTO;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ import java.util.stream.StreamSupport;
 public class ForetServiceImpl implements ForetService{
 
     private ForetJPARepository foretJPARepository;
+    private final EspacesJPARepository espacesJPARepository;
 
-    public ForetServiceImpl(ForetJPARepository foretJPARepository) {
+    public ForetServiceImpl(ForetJPARepository foretJPARepository, EspacesJPARepository espacesJPARepository) {
         this.foretJPARepository = foretJPARepository;
+        this.espacesJPARepository = espacesJPARepository;
     }
 
     public ForetDTO ajouterForet(ForetDTO foretDTO){
@@ -25,6 +29,11 @@ public class ForetServiceImpl implements ForetService{
         foret.setEspecearbre(foretDTO.getEspeceArbre());
         foret.setSuperficie(foretDTO.getSuperficie());
 
+        Espaces espace = new Espaces();
+
+        espace = espacesJPARepository.findById(foretDTO.getId()).get();
+
+        foret.setEspaces(espace);
         return  new ForetDTO(foretJPARepository.save(foret));
     }
 

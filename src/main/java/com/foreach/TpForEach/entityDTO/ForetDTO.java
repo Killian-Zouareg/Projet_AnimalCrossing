@@ -1,5 +1,6 @@
 package com.foreach.TpForEach.entityDTO;
 
+import com.foreach.TpForEach.entityDO.Espaces;
 import com.foreach.TpForEach.entityDO.Foret;
 
 public class ForetDTO {
@@ -12,11 +13,14 @@ public class ForetDTO {
 
     String especeArbre;
 
-    public ForetDTO(Integer id, String nom, int superficie, String especeArbre) {
+    Espaces espacesDTO;
+
+    public ForetDTO(Integer id, String nom, int superficie, String especeArbre, Espaces espacesDTO) {
         this.id = id;
         this.nom = nom;
         this.superficie = superficie;
         this.especeArbre = especeArbre;
+        this.espacesDTO = espacesDTO;
     }
 
     public ForetDTO(Foret foret){
@@ -24,6 +28,7 @@ public class ForetDTO {
         this.nom = foret.getNom();
         this.superficie = foret.getSuperficie();
         this.especeArbre = foret.getEspecearbre();
+        this.espacesDTO = foret.getEspaces();
     }
 
     public Integer getId() {
@@ -56,5 +61,13 @@ public class ForetDTO {
 
     public void setEspeceArbre(String especeArbre) {
         this.especeArbre = especeArbre;
+    }
+
+    public Espaces getEspacesDTO() {
+        return espacesDTO;
+    }
+
+    public void setEspacesDTO(Espaces espacesDTO) {
+        this.espacesDTO = espacesDTO;
     }
 }

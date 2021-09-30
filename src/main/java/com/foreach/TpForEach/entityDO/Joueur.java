@@ -4,7 +4,7 @@ package com.foreach.TpForEach.entityDO;
 import javax.persistence.*;
 
 @Entity
-public class JoueurDO {
+public class Joueur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,6 @@ public class JoueurDO {
 
     @Column
     String mail;
-
-    @ManyToOne
-    @JoinColumn(name = "id_archipel")
-    Archipel archipel;
 
 
     public Integer getId() {
@@ -54,13 +50,5 @@ public class JoueurDO {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public Archipel getArchipelDO() {
-        return archipel;
-    }
-
-    public void setArchipelDO(Archipel archipel) {
-        this.archipel = archipel;
     }
 }

@@ -1,8 +1,12 @@
 package com.foreach.TpForEach.Service;
 
 import com.foreach.TpForEach.Repository.EspacesJPARepository;
+import com.foreach.TpForEach.Repository.ForetJPARepository;
+import com.foreach.TpForEach.Repository.IleJPARepository;
+import com.foreach.TpForEach.Repository.PlageJPARepository;
 import com.foreach.TpForEach.entityDO.Espaces;
 import com.foreach.TpForEach.entityDO.Foret;
+import com.foreach.TpForEach.entityDO.Ile;
 import com.foreach.TpForEach.entityDO.Plage;
 import com.foreach.TpForEach.entityDTO.EspacesDTO;
 import org.springframework.stereotype.Service;
@@ -15,10 +19,16 @@ public class EspacesServiceImpl implements EspacesService {
 
     private final EspacesJPARepository espacesJPARepository;
     private final ForetService foretService;
+    private final IleJPARepository ileJPARepository;
+    private final PlageJPARepository plageJPARepository;
+    private final ForetJPARepository foretJPARepository;
 
-    public EspacesServiceImpl(EspacesJPARepository espacesJPARepository,ForetService foretService, PlageService plageService) {
+    public EspacesServiceImpl(EspacesJPARepository espacesJPARepository, ForetService foretService, IleJPARepository ileJPARepository, PlageJPARepository plageJPARepository, ForetJPARepository foretJPARepository, PlageService plageService) {
         this.espacesJPARepository = espacesJPARepository;
         this.foretService = foretService;
+        this.ileJPARepository = ileJPARepository;
+        this.plageJPARepository = plageJPARepository;
+        this.foretJPARepository = foretJPARepository;
         this.plageService = plageService;
     }
 
@@ -27,21 +37,16 @@ public class EspacesServiceImpl implements EspacesService {
 
 
     @Override
-    public EspacesDTO ajouterEspace(int id) {
+    public EspacesDTO ajouterEspace(EspacesDTO espacesDTO) {
         Espaces espaces = new Espaces();
-        Plage plage = new Plage();
-        Foret foret = new Foret();
 
-        plage.setId(plageService.recupererToutesLesPlages().get(id).getId());
-        plage.setNom(plageService.recupererToutesLesPlages().get(id).getNom());
 
-        foret.setId(foretService.recupererToutesLesForets().get(id).getId());
-        foret.setEspecearbre(foretService.recupererToutesLesForets().get(id).getEspeceArbre());
-        foret.setNom(foretService.recupererToutesLesForets().get(id).getNom());
-        foret.setSuperficie(foretService.recupererToutesLesForets().get(id).getSuperficie());
+        espaces.setId(espacesDTO.getId());
+        espaces.setNom(espacesDTO.getNom());
+        Ile ile = new Ile();
+        ile = ileJPARepository.findById(espacesDTO.getId()).get();
 
-        espaces.setPlage(plage);
-        espaces.setForet(foret);
+        espaces.setIle(ile);
         return new EspacesDTO(espacesJPARepository.save(espaces));
     }
 

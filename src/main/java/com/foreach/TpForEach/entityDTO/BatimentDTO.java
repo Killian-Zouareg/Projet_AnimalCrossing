@@ -1,6 +1,9 @@
 package com.foreach.TpForEach.entityDTO;
 
 import com.foreach.TpForEach.entityDO.Batiment;
+import com.foreach.TpForEach.entityDO.Ile;
+
+import java.util.Optional;
 
 public class BatimentDTO {
 
@@ -12,11 +15,14 @@ public class BatimentDTO {
 
     String typeDeBatiment;
 
-    public BatimentDTO(Integer id, String nom, int superficie, String typeDeBatiment) {
+    Ile ileDTO;
+
+    public BatimentDTO(Integer id, String nom, int superficie, String typeDeBatiment, Ile ileDTO) {
         this.id = id;
         this.nom = nom;
         this.superficie = superficie;
         this.typeDeBatiment = typeDeBatiment;
+        this.ileDTO = ileDTO;
     }
 
     public BatimentDTO(Batiment batiment) {
@@ -24,6 +30,7 @@ public class BatimentDTO {
         this.nom = batiment.getNom();
         this.superficie = batiment.getSuperficie();
         this.typeDeBatiment = batiment.getTypedebatiment();
+        this.ileDTO = batiment.getIle();
     }
 
     public Integer getId() {
@@ -56,5 +63,13 @@ public class BatimentDTO {
 
     public void setTypeDeBatiment(String typeDeBatiment) {
         this.typeDeBatiment = typeDeBatiment;
+    }
+
+    public Ile getIleDTO() {
+        return ileDTO;
+    }
+
+    public void setIleDTO(Ile ileDTO) {
+        this.ileDTO = ileDTO;
     }
 }

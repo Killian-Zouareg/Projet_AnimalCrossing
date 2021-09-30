@@ -20,9 +20,9 @@ public class Archipel {
     @Column
     String localisation;
 
-    @OneToMany
-    @JoinColumn (name = "id_ile")
-    List<Ile> ileDTOS;
+    @ManyToOne
+    @JoinColumn(name = "id_joueur")
+    Joueur joueur;
 
 
     public Integer getId() {
@@ -49,11 +49,11 @@ public class Archipel {
         this.localisation = localisation;
     }
 
-    public List<Ile> getIleDTOS() {
-        return ileDTOS;
+    public Joueur getJoueur() {
+        return joueur;
     }
 
-    public void setIleDTOS(List<Ile> ileDTOS) {
-        this.ileDTOS = ileDTOS;
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
     }
 }

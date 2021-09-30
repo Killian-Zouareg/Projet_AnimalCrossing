@@ -1,5 +1,7 @@
 package com.foreach.TpForEach.entityDO;
 
+import com.foreach.TpForEach.entityDTO.ForetDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,21 @@ public class Foret {
 
     @Column
     String especearbre;
+
+    @ManyToOne
+    @JoinColumn(name = "id_espaces")
+    Espaces espaces;
+
+    public Foret(ForetDTO foretDTO) {
+        this.id = foretDTO.getId();
+        this.nom = foretDTO.getNom();
+        this.superficie = foretDTO.getSuperficie();
+        this.especearbre = foretDTO.getEspeceArbre();
+        this.espaces = foretDTO.getEspacesDTO();
+    }
+
+    public Foret() {
+    }
 
     public Integer getId() {
         return id;
@@ -48,5 +65,13 @@ public class Foret {
 
     public void setEspecearbre(String especearbre) {
         this.especearbre = especearbre;
+    }
+
+    public Espaces getEspaces() {
+        return espaces;
+    }
+
+    public void setEspaces(Espaces espaces) {
+        this.espaces = espaces;
     }
 }

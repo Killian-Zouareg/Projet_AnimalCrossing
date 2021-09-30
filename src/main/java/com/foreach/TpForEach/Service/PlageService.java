@@ -9,4 +9,6 @@ public interface PlageService {
         PlageDTO ajouterPlage(PlageDTO plageDTO);
 
         List<PlageDTO> recupererToutesLesPlages();
+
+        void modifierPlage(Integer id , PlageDTO plageDTO);
 }

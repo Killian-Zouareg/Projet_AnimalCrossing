@@ -1,5 +1,7 @@
 package com.foreach.TpForEach.entityDTO;
 
+import com.foreach.TpForEach.entityDO.Joueur;
+
 public class JoueurDTO {
 
     Integer id;
@@ -10,14 +12,18 @@ public class JoueurDTO {
 
     String mail;
 
-    ArchipelDTO archipelDTO;
-
     public JoueurDTO(Integer id, String nom, String prenom, String mail, ArchipelDTO archipelDTO) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
-        this.archipelDTO = archipelDTO;
+    }
+
+    public JoueurDTO(Joueur joueur){
+        this.id = joueur.getId();
+        this.nom = joueur.getNom();
+        this.prenom = joueur.getPrenom();
+        this.mail = joueur.getMail();
     }
 
     public Integer getId() {
@@ -50,13 +56,5 @@ public class JoueurDTO {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public ArchipelDTO getArchipelDTO() {
-        return archipelDTO;
-    }
-
-    public void setArchipelDTO(ArchipelDTO archipelDTO) {
-        this.archipelDTO = archipelDTO;
     }
 }
